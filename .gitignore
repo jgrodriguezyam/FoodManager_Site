@@ -1,0 +1,7 @@
+**/*.user
+*.user
+*.suo
+packages/
+FoodManager/bin/
+FoodManager/obj/
+.vs/

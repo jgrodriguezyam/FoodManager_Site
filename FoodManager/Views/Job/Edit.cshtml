@@ -1,0 +1,20 @@
+﻿@model FoodManager.Models.Job
+@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Helpers
+@{
+    ViewBag.Title = "Editar puesto";
+    ViewBag.ButtonSave = Html.ButtonSave();
+}
+
+@using (Html.BeginForm(ActionType.Update.ToString(), EntityType.Job.ToString(), FormMethod.Post, new {id = "Form"}))
+{
+    <div class="panel panel-default">
+        <div class="panel-heading"> Información general</div>
+        <div class="panel-body">
+            <div id="JobContent">
+                @Html.Partial("_Form", Model)
+            </div>
+        </div>
+    </div>
+    @Html.ButtonsForm()
+}

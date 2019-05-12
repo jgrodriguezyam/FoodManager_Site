@@ -1,0 +1,17 @@
+﻿@using FoodManager.Infrastructure.Enums
+@using (Html.BeginForm(ActionType.Login.ToString(), EntityType.Worker.ToString(), FormMethod.Post, new {id = "LoginWorker"}))
+{
+    <div class=" form-group">
+        <div class=" input-group required-field-block">
+            <span class="input-group-addon"><i class="fa fa-barcode"></i></span>
+            <input class="form-control" id="Badge" name="Badge" placeholder="Gaffete" type="password" value="" maxlength="30">
+            <div class="required-icon iconPointer">
+                <div class="text">*</div>
+            </div>
+        </div>
+        <span class="input-group validateCustom" id="BadgeMessage"></span>
+    </div>
+    <br />
+
+    <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+}

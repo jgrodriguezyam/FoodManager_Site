@@ -1,0 +1,182 @@
+﻿@model FoodManager.Models.Ingredient
+@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Extensions
+@Html.HiddenFor(m => m.Id)
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Name, "Nombre", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group required-field-block">
+        <span class="input-group-addon"><i class="fa fa-leaf"></i></span>
+        @Html.TextBoxFor(m => m.Name, new
+        {
+            @class = "form-control",
+            data_role = "none",
+            placeholder = "Nombre",
+            id = "Name",
+            maxlength = "70",
+            Autocomplete = "off"
+        })
+        <div class="required-icon iconPointer">
+            <div class="text">*</div>
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="NameMessage"></span>
+</div>
+
+<div class="form-group selectize-container">
+    @Html.LabelFor(m => m.IngredientGroupId, "Grupo", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group required-field-block">
+        <span class="input-group-addon"><i class="fa fa-balance-scale"></i></span>
+        @{ var regions = new List<SelectListItem> { new SelectListItem { Value = Model.IngredientGroup.Id.ConvertToString(), Text = Model.IngredientGroup.Name } }; }
+        @Html.DropDownListFor(m => m.IngredientGroupId, regions, new
+        {
+            id = "IngredientGroupId",
+            @class = "form-control",
+            data_role = "none",
+            data_entity = EntityType.IngredientGroup
+        })
+        <div class="required-icon iconPointer">
+            <div class="text">*</div>
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="IngredientGroupIdMessage"></span>
+</div>
+
+<div class="form-group selectize-container">
+    @Html.LabelFor(m => m.Unit, "Unidad", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group required-field-block">
+        <span class="input-group-addon"><i class="fa fa-question"></i></span>
+        @{ var units = new List<SelectListItem>(); }
+        @if (Model.Unit.GetValue().IsGreaterThanZero())
+        {
+            units.Add(new SelectListItem { Value = Model.Unit.GetValue().ToString(), Text = Model.UnitLabel });
+        }
+        @Html.DropDownListFor(m => m.Unit, units, new
+        {
+            id = "Unit",
+            @class = "form-control",
+            data_role = "none",
+            data_entity = EntityType.Ingredient,
+            data_action = ActionType.GetUnits
+        })
+        <div class="required-icon iconPointer">
+            <div class="text">*</div>
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="UnitMessage"></span>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.NetWeight, "Peso neto", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-3 touchspinCustom">
+        @Html.TextBoxFor(m => m.NetWeight, new
+        {
+            @class = "form-control touchSpin postFixCustom",
+            placeholder = "0.0",
+            id = "NetWeight",
+            value = "0",
+            Autocomplete = "off"
+        })
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="NetWeightMessage"></span>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Energy, "Energía", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-3 touchspinCustom">
+        @Html.TextBoxFor(m => m.Energy, new
+        {
+            @class = "form-control",
+            placeholder = "0.0",
+            id = "Energy",
+            value = "0",
+            Autocomplete = "off"
+        })
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="EnergyMessage"></span>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Protein, "Proteínas", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-3 touchspinCustom">
+        @Html.TextBoxFor(m => m.Protein, new
+        {
+            @class = "form-control touchSpin",
+            placeholder = "0.0",
+            id = "Protein",
+            value = "0",
+            Autocomplete = "off"
+        })
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="ProteinMessage"></span>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Carbohydrate, "Carbohidratos", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-3 touchspinCustom">
+        @Html.TextBoxFor(m => m.Carbohydrate, new
+        {
+            @class = "form-control touchSpin",
+            placeholder = "0.0",
+            id = "Carbohydrate",
+            value = "0",
+            Autocomplete = "off"
+        })
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="CarbohydrateMessage"></span>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Sugar, "Azúcar", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-3 touchspinCustom">
+        @Html.TextBoxFor(m => m.Sugar, new
+        {
+            @class = "form-control touchSpin",
+            placeholder = "0.0",
+            id = "Sugar",
+            value = "0",
+            Autocomplete = "off"
+        })
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="SugarMessage"></span>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Lipid, "Lípidos", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-3 touchspinCustom">
+        @Html.TextBoxFor(m => m.Lipid, new
+        {
+            @class = "form-control touchSpin",
+            placeholder = "0.0",
+            id = "Lipid",
+            value = "0",
+            Autocomplete = "off"
+        })
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="LipidMessage"></span>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Sodium, "Sodio", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-3 touchspinCustom">
+        @Html.TextBoxFor(m => m.Sodium, new
+        {
+            @class = "form-control touchSpin",
+            placeholder = "0.0",
+            id = "Sodium",
+            value = "0",
+            Autocomplete = "off"
+        })
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="SodiumMessage"></span>
+</div>

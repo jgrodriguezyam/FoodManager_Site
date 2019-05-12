@@ -1,0 +1,51 @@
+﻿@model FoodManager.Models.Reports.ReservationReportResponse
+@using FoodManager.Infrastructure.Enums
+@{
+    ViewBag.Title = "Calorías consumidas";
+    const EntityType entity = EntityType.Report;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 input-group container-left">
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            @Html.TextBox("StartDate", TempData["StartDate"], new
+            {
+                id = "StartDate",
+                @class = "form-control dateRangePicker",
+                data_role = "none",
+                placeholder = "dd/mm/aaaa",
+                maxlength = "10",
+                autocomplete = "off"
+            })
+        </div>
+        <div class="col-lg-3 input-group container-left">
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            @Html.TextBox("EndDate", TempData["EndDate"], new
+            {
+                id = "EndDate",
+                @class = "form-control dateRangePicker",
+                data_role = "none",
+                placeholder = "dd/mm/aaaa",
+                maxlength = "10",
+                autocomplete = "off"
+            })
+        </div>
+
+    </div>
+</div>
+
+<div id="@entity" >
+    @foreach (var calorie in Model.Calories)
+    {
+        <div class="tab-content col-md-3" style="text-align: center; margin-top: 20px">
+            <div style="height: 50%; display: inline-block;">
+                <div>@calorie.Date</div>
+                <span data-calories="@Json.Encode(calorie)" class="pie-calorie">
+                    <canvas class="canvas-sparklines"></canvas>
+                </span>
+            </div>
+            <div class="col-md-12 concepts" style="text-align: center; font-size: 80%; padding-top: 20px"> </div>
+        </div>
+    }
+</div>

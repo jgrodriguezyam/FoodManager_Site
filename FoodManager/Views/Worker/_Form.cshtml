@@ -1,0 +1,261 @@
+﻿@model FoodManager.Models.Worker
+@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Extensions
+@using FoodManager.Infrastructure.Resolvers
+@Html.HiddenFor(m => m.Id)
+@{
+    var maxValueType = new GenderType().RetrieveMaxValue();
+    var widthToTypeButton = 100 / maxValueType;
+    var types = new GenderType().ConvertToCollection();
+}
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Gender, "Género", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group types-form">
+        <div class="btn-group btn-block" data-toggle="buttons">
+            @foreach (var type in types)
+            {
+                var isActive = Model.Gender.GetValue().IsEqualTo(type.Value) ? "active" : "";
+                var isChecked = Model.Gender.GetValue().IsEqualTo(type.Value) ? "checked" : "";
+                <label class="btn btn-default @isActive" style="width: @widthToTypeButton%">
+                    <input type="radio" name="Gender" data-role="none" value="@type.Value" class="Type" @isChecked>
+                    @EnumResolver.Gender(type.Value)
+                </label>
+            }
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="GenderMessage"></span>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Code, "Código", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group required-field-block">
+        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        @Html.TextBoxFor(m => m.Code, new
+        {
+            @class = "form-control",
+            data_role = "none",
+            placeholder = "00001",
+            id = "Code",
+            maxlength = "10",
+            Autocomplete = "off",
+            data_entity = EntityType.Worker,
+            data_first = Model.Code
+        })
+        <div class="required-icon iconPointer">
+            <div class="text">*</div>
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="CodeMessage"></span>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.FirstName, "Nombre", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group required-field-block">
+        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        @Html.TextBoxFor(m => m.FirstName, new
+        {
+            @class = "form-control",
+            data_role = "none",
+            placeholder = "Nombre",
+            id = "FirstName",
+            maxlength = "40",
+            Autocomplete = "off"
+        })
+        <div class="required-icon iconPointer">
+            <div class="text">*</div>
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="FirstNameMessage"></span>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.LastName, "Apellidos", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group required-field-block">
+        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        @Html.TextBoxFor(m => m.LastName, new
+        {
+            @class = "form-control",
+            data_role = "none",
+            placeholder = "Apellidos",
+            id = "LastName",
+            maxlength = "60",
+            Autocomplete = "off"
+        })
+        <div class="required-icon iconPointer">
+            <div class="text">*</div>
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="LastNameMessage"></span>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Email, "Email", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group required-field-block">
+        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+        @Html.TextBoxFor(m => m.Email, new
+        {
+            @class = "form-control",
+            data_role = "none",
+            placeholder = "ejemplo@email.com",
+            id = "Email",
+            maxlength = "60",
+            Autocomplete = "off"
+        })
+        <div class="required-icon iconPointer">
+            <div class="text">*</div>
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="EmailMessage"></span>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Imss, "Imss", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group required-field-block">
+        <span class="input-group-addon"><i class="fa fa-hospital-o"></i></span>
+        @Html.TextBoxFor(m => m.Imss, new
+        {
+            @class = "form-control",
+            data_role = "none",
+            placeholder = "00000000000",
+            id = "Imss",
+            maxlength = "15",
+            Autocomplete = "off",
+            data_entity = EntityType.Worker,
+            data_first = Model.Imss
+        })
+        <div class="required-icon iconPointer">
+            <div class="text">*</div>
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="ImssMessage"></span>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Badge, "Gaffete", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group required-field-block">
+        <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+        @Html.TextBoxFor(m => m.Badge, new
+        {
+            @class = "form-control",
+            data_role = "none",
+            placeholder = "00000000000",
+            id = "Badge",
+            maxlength = "15",
+            Autocomplete = "off",
+            data_entity = EntityType.Worker,
+            data_first = Model.Badge
+        })
+        <div class="required-icon iconPointer">
+            <div class="text">*</div>
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="BadgeMessage"></span>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.LimitEnergy, "Ingesta calórica", new {@class = "col-lg-2 control-label"})
+    <div class="col-md-6 touchspinCustom">
+        @Html.TextBoxFor(m => m.LimitEnergy, new
+        {
+            @class = "form-control",
+            data_role = "none",
+            placeholder = "2000",
+            id = "LimitEnergy",
+            Autocomplete = "off",
+            data_entity = EntityType.Worker,
+            data_first = Model.Code
+        })
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="LimitEnergyMessage"></span>
+</div>
+
+
+
+<div class="form-group selectize-container">
+    @Html.LabelFor(m => m.BranchId, "Sucursal", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group required-field-block">
+        <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+        @{ var branches = new List<SelectListItem> { new SelectListItem { Value = Model.Branch.Id.ConvertToString(), Text = Model.Branch.Name } }; }
+        @Html.DropDownListFor(m => m.BranchId, branches, new
+        {
+            id = "BranchId",
+            @class = "form-control",
+            data_role = "none",
+            data_entity = EntityType.Branch
+        })
+        <div class="required-icon iconPointer">
+            <div class="text">*</div>
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="BranchIdMessage"></span>
+</div>
+
+<div class="form-group selectize-container">
+    @Html.LabelFor(m => m.DepartmentId, "Departamento", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group required-field-block">
+        <span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
+        @{ var departments = new List<SelectListItem> { new SelectListItem { Value = Model.Department.Id.ConvertToString(), Text = Model.Department.Name } }; }
+        @Html.DropDownListFor(m => m.DepartmentId, departments, new
+        {
+            id = "DepartmentId",
+            @class = "form-control",
+            data_role = "none",
+            data_entity = EntityType.Department
+        })
+        <div class="required-icon iconPointer">
+            <div class="text">*</div>
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="DepartmentIdMessage"></span>
+</div>
+
+<div class="form-group selectize-container">
+    @Html.LabelFor(m => m.JobId, "Puesto", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group required-field-block">
+        <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
+        @{ var jobs = new List<SelectListItem> { new SelectListItem { Value = Model.Job.Id.ConvertToString(), Text = Model.Job.Name } }; }
+        @Html.DropDownListFor(m => m.JobId, jobs, new
+        {
+            id = "JobId",
+            @class = "form-control",
+            data_role = "none",
+            data_entity = EntityType.Job
+        })
+        <div class="required-icon iconPointer">
+            <div class="text">*</div>
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="JobIdMessage"></span>
+</div>
+
+<div class="form-group selectize-container">
+    @Html.LabelFor(m => m.RoleId, "Rol", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group required-field-block">
+        <span class="input-group-addon"><i class="fa fa-unlock"></i></span>
+        @{ var roles = new List<SelectListItem> { new SelectListItem { Value = Model.Role.Id.ConvertToString(), Text = Model.Role.Name } }; }
+        @Html.DropDownListFor(m => m.RoleId, roles, new
+        {
+            id = "RoleId",
+            @class = "form-control",
+            data_role = "none",
+            data_entity = EntityType.Role
+        })
+        <div class="required-icon iconPointer">
+            <div class="text">*</div>
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="RoleIdMessage"></span>
+</div>

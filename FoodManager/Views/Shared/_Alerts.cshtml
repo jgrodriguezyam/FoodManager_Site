@@ -1,0 +1,47 @@
+﻿@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Extensions
+@using FoodManager.Infrastructure.Helpers
+@{
+    var information = TempData[TempDataType.Information.ToString()];
+    var success = TempData[TempDataType.Success.ToString()];
+    var warning = TempData[TempDataType.Warning.ToString()];
+    var failure = TempData[TempDataType.Failure.ToString()];
+    var lostSession = TempData[TempDataType.LostSession.ToString()];
+    var invalidSerial = TempData[TempDataType.InvalidSerial.ToString()];
+
+    if (TempData[TempDataType.LostSession.ToString()].IsNotNull())
+    {
+        @Html.Information(lostSession.ToString())
+        TempData[TempDataType.LostSession.ToString()] = null;
+    }
+    
+    if (TempData[TempDataType.Information.ToString()].IsNotNull())
+    {
+        @Html.Information(information.ToString())
+        TempData[TempDataType.Information.ToString()] = null;
+    }
+    
+    if (TempData[TempDataType.Success.ToString()].IsNotNull())
+    {
+        @Html.Success(success.ToString())
+        TempData[TempDataType.Success.ToString()] = null;
+    }
+    
+    if (TempData[TempDataType.InvalidSerial.ToString()].IsNotNull())
+    {
+        @Html.Warning(invalidSerial.ToString())
+        TempData[TempDataType.InvalidSerial.ToString()] = null;
+    }
+
+    if (TempData[TempDataType.Warning.ToString()].IsNotNull())
+    {
+        @Html.Warning(warning.ToString())
+        TempData[TempDataType.Warning.ToString()] = null;
+    }
+
+    if (failure.IsNotNull())
+    {
+        @Html.Failure(failure.ToString())
+        TempData[TempDataType.Failure.ToString()] = null;
+    }
+}

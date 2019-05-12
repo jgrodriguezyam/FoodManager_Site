@@ -1,0 +1,21 @@
+﻿@model FoodManager.Models.Dealer
+@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Helpers
+@{
+    ViewBag.Title = "Nuevo concesionario";
+    ViewBag.ButtonSave = Html.ButtonSave();
+}
+
+@using (Html.BeginForm(ActionType.Create.ToString(), EntityType.Dealer.ToString(), FormMethod.Post, new { id = "Form" }))
+{
+    <div class="panel panel-default">
+        <div class="panel-heading"> Información general</div>
+        <div class="panel-body">
+            <div id="DealerContent">
+                @Html.Partial("_Form", Model)
+            </div>
+        </div>
+    </div>
+
+    @Html.ButtonsForm()
+}

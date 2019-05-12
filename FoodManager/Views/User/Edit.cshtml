@@ -1,0 +1,52 @@
+﻿@model FoodManager.Models.User
+@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Helpers
+@{
+    ViewBag.Title = "Editar usuario";
+    ViewBag.Subtitle = Model.UserName;
+}
+
+<div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+    <div class="btn-group" role="group">
+        <a type="button" id="TabUser" class="btn btn-primary" href="#UserContent" data-toggle="tab">
+            <span class="fa fa-user" aria-hidden="true"></span>
+            <div class="hidden-xs">Información general</div>
+        </a>
+    </div>
+    <div class="btn-group" role="group">
+        <a type="button" id="TabPassword" class="btn btn-default" href="#PasswordContent" data-toggle="tab">
+            <span class="fa fa-lock" aria-hidden="true"></span>
+            <div class="hidden-xs">Cambiar contraseña</div>
+        </a>
+    </div>
+</div>
+
+
+@using (Html.BeginForm(ActionType.Update.ToString(), EntityType.User.ToString(), FormMethod.Post, new {id = "Form"}))
+{
+    <div class="well border-radius-bottom" style="background-color: #fff">
+        <div class="tab-content">
+            
+            <div class="tab-pane fade in active row" id="UserContent">
+                @Html.HiddenFor(m => m.UserName)
+                @Html.Partial("_Form", Model)
+            </div>
+
+            <div class="tab-pane fade in row" id="PasswordContent">
+                @Html.Partial("_ChangePassword")
+            </div>
+
+        </div>
+    </div>
+
+    <div id="FormButtons">
+        @Html.ButtonsForm()
+    </div>
+
+    <div id="PasswordButtons" class='row margin-bottom-15' style="margin-left: 0" hidden>
+        <div class='col-md-12'>
+            <button type="submit" id="ChangePassword" class='btn btn-success pull-left'>Actualizar</button>
+            <a id="CleanPassword" class='btn btn-warning pull-left margin-left-10' data-role='none'>Limpiar campos</a>
+        </div>
+    </div>
+}

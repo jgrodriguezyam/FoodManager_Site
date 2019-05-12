@@ -1,0 +1,109 @@
+﻿@using FoodManager.Infrastructure.Constants
+@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Extensions
+@using FoodManager.Infrastructure.Helpers
+@using FoodManager.Infrastructure.Resolvers
+@using FoodManager.Infrastructure.Settings
+@using FoodManager.Infrastructure.Extensions
+@{
+    var currentAction = Html.ViewContext.RouteData.GetRequiredString("action");
+    var hiddenClass = currentAction.IsEquals(ActionType.Index.ToString()) ? "" : "hidden";
+    var saucerTypes = new SaucerType().ConvertToCollection();
+    var indexSaucer = 0;
+}
+
+    <div class="container-fluid @hiddenClass">
+        <div class="row">
+            <div class="col-lg-3 input-group container-left">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                @Html.TextBox("Date", "", new
+                {
+                    id = "Date",
+                    @class = "form-control dateRangePicker",
+                    data_role = "none",
+                    placeholder = "dd/mm/aaaa",
+                    maxlength = "10",
+                    autocomplete = "off"
+                })
+            </div>
+            <div class="col-lg-3 input-group container-left selectize-container">
+                <span class="input-group-addon"><i class="fa fa-balance-scale"></i></span>
+                @Html.DropDownList("DealerId", new List<SelectListItem>(), new
+       {
+           id = "DealerId",
+           @class = "form-control",
+           data_role = "none",
+           data_entity = EntityType.Dealer
+       })
+            </div>
+            @Html.ButtonGoodEat()
+            @Html.ButtonHistory()
+        </div>
+    </div>
+
+<div class="btn-pref btn-group btn-group-justified btn-group-lg margin-top-20" role="group" aria-label="...">
+    @foreach (var saucerType in saucerTypes)
+    {
+        var classButton = indexSaucer.IsEqualToZero() ? "btn-primary" : "btn-default";
+        <div class="btn-group" role="group">
+            <a type="button" class="btn @classButton" href="#@saucerType.Name" data-toggle="tab">
+                <span class="fa fa-@EnumResolver.SaucerIcon(saucerType.Value)" aria-hidden="true"></span>
+                <div class="hidden-xs">@EnumResolver.Saucer(saucerType.Value)</div>
+            </a>
+        </div>
+        indexSaucer++;
+    }
+</div>
+
+<div style="background-color: #fff; border: none; padding-bottom: 15px;">
+    <div class="tab-content col-md-7" style="margin-left: 10px; margin-right: -10px">
+        @foreach (var saucerType in saucerTypes)
+        {
+            var classTab = saucerType.Value.IsEqualTo(1) ? "active" : "";
+            var idNextPage = "NextPage-"  + saucerType.Name;
+            <div class="tab-pane fade in @classTab row menuType" data-value="@saucerType.Value" id="@saucerType.Name">
+                <div class="cards-selectable" style=" padding: 10px 10px 0 15px;">
+                </div>
+                <span hidden  id="@idNextPage"></span>
+            </div>
+        }
+    </div>
+    <div class="tab-content col-md-5" style="text-align: center; padding: 10px 0 0 5px; min-height: 450px; margin-top: 20px">
+
+        <div id="inputs" hidden> </div>
+
+        <div style="height: 50%; display: inline-block;">
+            <div>Platillo</div>
+            <span id="SaucerPie">
+                <canvas class="canvas-sparklines"></canvas>
+            </span>
+        </div>
+        <div style="height: 50%; display: inline-block;">
+            <div>General</div>
+            <span id="GeneralPie">
+                <canvas class="canvas-sparklines"></canvas>
+            </span>
+        </div>
+
+        <div id="ingredientGroups" class="col-md-12" style="text-align: center; font-size: 80%; padding-top: 20px"> </div>
+
+        <div id="tip" class="alert alert-success" role="alert" style="padding-top: 10px; text-align: left; position: absolute; bottom: 0; width: 100%; left: 0;"> </div>
+    </div>
+</div>
+@if (SessionSettings.RetrieveLimitEnergy.IsGreaterThanZero())
+{
+    <div style="width: 100%; display: inline-block; padding-top: 10px;">
+        <div class="text-muted">Indicador de contenido calórico basada en una de dieta de @SessionSettings.RetrieveLimitEnergy Kcal</div>
+        <div class="progress" style="width: 100%;" data-toggle="tooltip" title="" data-html="true">
+            <div id="progress-bar-energy" class="progress-bar progress-bar-success" style="width: 0" data-maxpercentage="@SessionSettings.RetrieveLimitEnergy">
+                <span>0</span> de @SessionSettings.RetrieveLimitEnergy Kcal recomendadas
+            </div>
+        </div>
+    </div>
+}
+
+<div class='col-lg-1 container-left'>
+    <button type='button' class='Save btn btn-success btn-block btnSave'>@DisplayConstants.Save</button>
+</div>
+
+    <button id='Create' type='submit' class='btn btn-success hidden'>Guardar</button>

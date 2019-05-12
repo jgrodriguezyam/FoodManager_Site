@@ -1,0 +1,51 @@
+﻿@model FoodManager.Models.Saucer
+@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Extensions
+@using FoodManager.Infrastructure.Resolvers
+@Html.HiddenFor(m => m.Id)
+@Html.HiddenFor(m => m.Status)
+@{
+    var maxValueType = new SaucerType().RetrieveMaxValue();
+    var widthToTypeButton = 100 / maxValueType;
+    var types = new SaucerType().ConvertToCollection();
+}
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Name, "Nombre", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group required-field-block">
+        <span class="input-group-addon"><i class="fa fa-cutlery"></i></span>
+        @Html.TextBoxFor(m => m.Name, new
+        {
+            @class = "form-control",
+            data_role = "none",
+            placeholder = "Nombre",
+            id = "Name",
+            maxlength = "70",
+            Autocomplete = "off"
+        })
+        <div class="required-icon iconPointer">
+            <div class="text">*</div>
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="NameMessage"></span>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Type, "Tipo", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group types-form">
+        <div class="btn-group btn-block" data-toggle="buttons">
+            @foreach (var type in types)
+            {
+                var isActive = Model.Type.GetValue().IsEqualTo(type.Value) ? "active" : "";
+                var isChecked = Model.Type.GetValue().IsEqualTo(type.Value) ? "checked" : "";
+                <label class="btn btn-default @isActive" style="width: @widthToTypeButton%">
+                    <input type="radio" name="Type" data-role="none" value="@type.Value" class="Type" @isChecked>
+                    @EnumResolver.Saucer(type.Value)
+                </label>
+            }
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="TypeMessage"></span>
+</div>

@@ -1,0 +1,45 @@
+﻿@model FoodManager.Models.IngredientGroup
+@Html.HiddenFor(m => m.Id) 
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Name, "Nombre", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group required-field-block">
+        <span class="input-group-addon"><i class="fa fa-balance-scale"></i></span>
+        @Html.TextBoxFor(m => m.Name, new
+        {
+            @class = "form-control",
+            data_role = "none",
+            placeholder = "Nombre",
+            id = "Name",
+            maxlength = "70",
+            Autocomplete = "off"
+        })
+        <div class="required-icon iconPointer">
+            <div class="text">*</div>
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="NameMessage"></span>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Color, "Color", new { @class = "col-lg-2 control-label" })
+    <div class="col-md-6 input-group required-field-block">
+        <span class="input-group-addon"><i class="fa fa-paint-brush"></i></span>
+        @Html.TextBoxFor(m => m.Color, new
+        {
+            @class = "form-control",
+            data_role = "none",
+            placeholder = "#000000",
+            id = "Color",
+            maxlength = "7",
+            Autocomplete = "off",
+            style = "text-transform: uppercase"
+        })
+        <div class="required-icon iconPointer">
+            <div class="text">*</div>
+        </div>
+    </div>
+    <span class="col-lg-2 control-label clearSpan"></span>
+    <span class="col-lg-6 validateCustom" id="ColorMessage"></span>
+</div>

@@ -1,0 +1,9 @@
+﻿@model FoodManager.Models.Branch
+
+@foreach (var dealer in Model.Dealers)
+{
+    <div class="SelectableContent selected not-format" data-dealer="@Json.Encode(dealer)" data-name="@dealer.Name">
+        <input name="Dealers.Index" type="hidden" value="@dealer.Id" hidden="hidden">
+        <input name="Dealers[@dealer.Id].Id" type="text" value="@dealer.Id" hidden="hidden">
+    </div>
+}

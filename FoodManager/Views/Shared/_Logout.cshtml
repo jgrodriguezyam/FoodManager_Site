@@ -1,0 +1,27 @@
+﻿@using FoodManager.Infrastructure.Settings
+<div id="logout_background" class="popup_background"></div>
+
+<div id="logout_wrapper" class="popup_wrapper">
+    <div id="logout" class="popup_content" role="dialog">
+        <div class="logout-message">
+            <h3><i class="fa fa-sign-out"></i> Cerrar Sesión</h3>
+            <p>
+            Seleccione "Aceptar" si está listo para<br>
+            salir del sistema
+            <ul class="list-inline">
+                <li>
+                    <button id="calcelLogout" class="btn btn-warning">Cancelar</button>
+                </li>
+                <li>
+                    @using (Html.BeginForm("Logout", SessionSettings.RetrieveLoginType.ToString(), FormMethod.Post, new { id = "LogoutForm", data_session = SessionSettings.RetrieveLoginType.ToString() }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('LogoutForm').submit()" class="btn btn-primary">
+                            <strong>Aceptar</strong>
+                        </a>
+                    }
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

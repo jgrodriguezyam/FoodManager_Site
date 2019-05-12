@@ -1,0 +1,43 @@
+﻿@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Extensions
+@using FoodManager.Infrastructure.Helpers
+@using FoodManager.Infrastructure.Resolvers
+@using FoodManager.Models.BaseResponses
+@{
+    ViewBag.Title = "Menús";
+    var saucerTypes = new SaucerType().ConvertToCollection();
+    var optgroups = saucerTypes.Select(saucerType => new Enumerator { Value = saucerType.Value, Name = EnumResolver.Saucer(saucerType.Value) });
+}
+
+<div id="@EntityType.Menu">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 input-group container-left selectize-container">
+                <span class="input-group-addon"><i class="fa fa-spoon"></i></span>
+                @Html.DropDownList("DealerId", new List<SelectListItem>(), new
+                {
+                    id = "DealerId",
+                    @class = "form-control",
+                    data_role = "none",
+                    data_entity = EntityType.Dealer
+                })
+            </div>
+            <div class="col-lg-3 input-group container-left selectize-container">
+                <span class="input-group-addon"><i class="fa fa-cutlery"></i></span>
+                @Html.DropDownList("SaucerId", new List<SelectListItem>(), new
+                {
+                    id = "SaucerId",
+                    @class = "form-control",
+                    data_role = "none",
+                    data_entity = EntityType.Saucer,
+                    data_groups = Json.Encode(optgroups)
+                })
+            </div>
+            @Html.ButtonFilter()
+            @Html.ButtonExport()
+            @Html.ButtonNew()
+            @Html.ButtonDeleteMany()
+        </div>
+    </div>
+    @Html.Table()
+</div>

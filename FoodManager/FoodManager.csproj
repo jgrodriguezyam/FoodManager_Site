@@ -1,0 +1,798 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4C2DA31B-8B83-490F-82F9-1FB03C938A79}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FoodManager</RootNamespace>
+    <AssemblyName>FoodManager</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>1</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector">
+      <HintPath>..\packages\SimpleInjector.3.1.2\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Web">
+      <HintPath>..\packages\SimpleInjector.Integration.Web.3.1.2\lib\net40\SimpleInjector.Integration.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Web.Mvc">
+      <HintPath>..\packages\SimpleInjector.Integration.Web.Mvc.3.1.2\lib\net40\SimpleInjector.Integration.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Abstractions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.1.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.2.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\RazorConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SimpleInjectorConfig.cs" />
+    <Compile Include="Controllers\SystemController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\ReservationDetailController.cs" />
+    <Compile Include="Controllers\SaucerConfigurationController.cs" />
+    <Compile Include="Controllers\TipController.cs" />
+    <Compile Include="Controllers\WorkerController.cs" />
+    <Compile Include="Controllers\WarningController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\SaucerMultimediaController.cs" />
+    <Compile Include="Controllers\SaucerController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
+    <Compile Include="Controllers\RegionController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\JobController.cs" />
+    <Compile Include="Controllers\IngredientGroupController.cs" />
+    <Compile Include="Controllers\IngredientController.cs" />
+    <Compile Include="Controllers\DiseaseController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\DealerController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\BranchController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Infrastructure\Attributes\ValidateAttribute.cs" />
+    <Compile Include="Infrastructure\Attributes\CompressAttribute.cs" />
+    <Compile Include="Infrastructure\Attributes\ExceptionAttribute.cs" />
+    <Compile Include="Infrastructure\Bundles\StyleBundleModule.cs" />
+    <Compile Include="Infrastructure\Bundles\ScriptBundleModule.cs" />
+    <Compile Include="Infrastructure\Constants\ExceptionConstants.cs" />
+    <Compile Include="Infrastructure\Constants\PluralEntityConstants.cs" />
+    <Compile Include="Infrastructure\Constants\SessionConstants.cs" />
+    <Compile Include="Infrastructure\Constants\DisplayConstants.cs" />
+    <Compile Include="Infrastructure\Dictionaries\ExceptionDictionary.cs" />
+    <Compile Include="Infrastructure\Dictionaries\MessageDictionary.cs" />
+    <Compile Include="Infrastructure\Dictionaries\ActionDictionary.cs" />
+    <Compile Include="Infrastructure\Enums\AccessLevelType.cs" />
+    <Compile Include="Infrastructure\Enums\EMonth.cs" />
+    <Compile Include="Infrastructure\Enums\ExceptionType.cs" />
+    <Compile Include="Infrastructure\Enums\ActionType.cs" />
+    <Compile Include="Infrastructure\Enums\UnitType.cs" />
+    <Compile Include="Infrastructure\Enums\NavigationMenu.cs" />
+    <Compile Include="Infrastructure\Enums\GenderType.cs" />
+    <Compile Include="Infrastructure\Enums\EntityType.cs" />
+    <Compile Include="Infrastructure\Enums\RecurrenceType.cs" />
+    <Compile Include="Infrastructure\Enums\DayWeekName.cs" />
+    <Compile Include="Infrastructure\Enums\SaucerType.cs" />
+    <Compile Include="Infrastructure\Enums\MealType.cs" />
+    <Compile Include="Infrastructure\Enums\LoginType.cs" />
+    <Compile Include="Infrastructure\Enums\TempDataType.cs" />
+    <Compile Include="Infrastructure\Exceptions\AppSettings\InvalidSerialVersionException.cs" />
+    <Compile Include="Infrastructure\Exceptions\AppSettings\InvalidSerialException.cs" />
+    <Compile Include="Infrastructure\Exceptions\AppSettings\InvalidServerException.cs" />
+    <Compile Include="Infrastructure\Exceptions\AppSettings\UnconfiguredServerException.cs" />
+    <Compile Include="Infrastructure\Exceptions\Client\BadRequestException.cs" />
+    <Compile Include="Infrastructure\Exceptions\Client\ExpectationFailedException.cs" />
+    <Compile Include="Infrastructure\Exceptions\Client\ForbiddenException.cs" />
+    <Compile Include="Infrastructure\Exceptions\Client\ConflictException.cs" />
+    <Compile Include="Infrastructure\Exceptions\Client\InternalServerException.cs" />
+    <Compile Include="Infrastructure\Exceptions\Client\MethodNotAllowedException.cs" />
+    <Compile Include="Infrastructure\Exceptions\Client\NotFoundException.cs" />
+    <Compile Include="Infrastructure\Exceptions\Client\AcceptedException.cs" />
+    <Compile Include="Infrastructure\Exceptions\Client\NotAcceptableException.cs" />
+    <Compile Include="Infrastructure\Exceptions\Client\PreconditionFailedException.cs" />
+    <Compile Include="Infrastructure\Exceptions\Client\ServerNotFoundException.cs" />
+    <Compile Include="Infrastructure\Exceptions\Client\UnauthorizedException.cs" />
+    <Compile Include="Infrastructure\Exceptions\InternetConnectivity\InternetConnectivityException.cs" />
+    <Compile Include="Infrastructure\Exceptions\Session\SessionNotFoundException.cs" />
+    <Compile Include="Infrastructure\Exports\CsvExport.cs" />
+    <Compile Include="Infrastructure\Extensions\CollectionExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\ControllerExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\DecimalExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\DoubleExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\EnumExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\IntegerExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\ContextExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\ObjectExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\StringExtensions.cs" />
+    <Compile Include="Infrastructure\Factories\StreamFactory.cs" />
+    <Compile Include="Infrastructure\Factories\RandomFactory.cs" />
+    <Compile Include="Infrastructure\Factories\TempDataFactory.cs" />
+    <Compile Include="Infrastructure\Factories\JsonFactory.cs" />
+    <Compile Include="Infrastructure\Helpers\IndexHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\NavigationMenuHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\TempDataHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\ButtonHelper.cs" />
+    <Compile Include="Infrastructure\Client\Request.cs" />
+    <Compile Include="Infrastructure\Client\Response.cs" />
+    <Compile Include="Infrastructure\Dictionaries\ModelDictionary.cs" />
+    <Compile Include="Infrastructure\Resolvers\NavigationMenuResolver.cs" />
+    <Compile Include="Infrastructure\Resolvers\EnumResolver.cs" />
+    <Compile Include="Infrastructure\Resolvers\RootResolver.cs" />
+    <Compile Include="Infrastructure\Security\Cryptography.cs" />
+    <Compile Include="Infrastructure\Security\Hmac.cs" />
+    <Compile Include="Infrastructure\Constants\MessageConstants.cs" />
+    <Compile Include="Infrastructure\Constants\SystemConstants.cs" />
+    <Compile Include="Infrastructure\Settings\AppSettings.cs" />
+    <Compile Include="Infrastructure\Settings\SessionSettings.cs" />
+    <Compile Include="Infrastructure\RazorView\CSharpRazorViewEngine.cs" />
+    <Compile Include="Infrastructure\SimpleInjector\SimpleInjectorModule.cs" />
+    <Compile Include="Models\BaseResponses\WorkerLoginResponse.cs" />
+    <Compile Include="Models\Filters\RoleFilter.cs" />
+    <Compile Include="Models\Pages\RolePage.cs" />
+    <Compile Include="Models\Reports\ReservationCalorieReportResponse.cs" />
+    <Compile Include="Models\Reports\Worker.cs" />
+    <Compile Include="Models\Reports\Garrison.cs" />
+    <Compile Include="Models\Reports\Main.cs" />
+    <Compile Include="Models\Reports\WorkerReport.cs" />
+    <Compile Include="Models\Reports\SaucerReport.cs" />
+    <Compile Include="Models\Reports\WorkerReportResponse.cs" />
+    <Compile Include="Models\Reports\SaucerReportResponse.cs" />
+    <Compile Include="Models\Reports\ReservationReportResponse.cs" />
+    <Compile Include="Models\Reports\ReservationReport.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Files\File.cs" />
+    <Compile Include="Models\Filters\ReservationDetailFilter.cs" />
+    <Compile Include="Models\Filters\SaucerConfigurationFilter.cs" />
+    <Compile Include="Models\Filters\TipFilter.cs" />
+    <Compile Include="Models\Filters\WorkerFilter.cs" />
+    <Compile Include="Models\Filters\WarningFilter.cs" />
+    <Compile Include="Models\Filters\UserFilter.cs" />
+    <Compile Include="Models\Filters\SaucerFilter.cs" />
+    <Compile Include="Models\Filters\SaucerMultimediaFilter.cs" />
+    <Compile Include="Models\Filters\ReservationFilter.cs" />
+    <Compile Include="Models\Filters\RegionFilter.cs" />
+    <Compile Include="Models\Filters\MenuFilter.cs" />
+    <Compile Include="Models\Filters\JobFilter.cs" />
+    <Compile Include="Models\Filters\IngredientGroupFilter.cs" />
+    <Compile Include="Models\Filters\IngredientFilter.cs" />
+    <Compile Include="Models\Filters\DiseaseFilter.cs" />
+    <Compile Include="Models\Filters\DepartmentFilter.cs" />
+    <Compile Include="Models\Filters\DealerFilter.cs" />
+    <Compile Include="Models\Filters\CompanyFilter.cs" />
+    <Compile Include="Models\Filters\BranchFilter.cs" />
+    <Compile Include="Models\Filters\SortingAndPagination.cs" />
+    <Compile Include="Models\Pages\ReservationDetailPage.cs" />
+    <Compile Include="Models\Pages\SaucerConfigurationPage.cs" />
+    <Compile Include="Models\NutritionInformation.cs" />
+    <Compile Include="Models\ReservationDetail.cs" />
+    <Compile Include="Models\SaucerConfiguration.cs" />
+    <Compile Include="Models\Ingredient.cs" />
+    <Compile Include="Models\IngredientGroup.cs" />
+    <Compile Include="Models\ChangePassword.cs" />
+    <Compile Include="Models\WorkerLogin.cs" />
+    <Compile Include="Models\Pages\TipPage.cs" />
+    <Compile Include="Models\Tip.cs" />
+    <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\Pages\IngredientGroupPage.cs" />
+    <Compile Include="Models\Pages\SaucerMultimediaPage.cs" />
+    <Compile Include="Models\Pages\WorkerPage.cs" />
+    <Compile Include="Models\Pages\WarningPage.cs" />
+    <Compile Include="Models\Pages\UserPage.cs" />
+    <Compile Include="Models\Pages\SaucerPage.cs" />
+    <Compile Include="Models\Pages\ReservationPage.cs" />
+    <Compile Include="Models\Pages\RegionPage.cs" />
+    <Compile Include="Models\Pages\MenuPage.cs" />
+    <Compile Include="Models\Pages\JobPage.cs" />
+    <Compile Include="Models\Pages\IngredientPage.cs" />
+    <Compile Include="Models\Pages\DiseasePage.cs" />
+    <Compile Include="Models\Pages\DepartmentPage.cs" />
+    <Compile Include="Models\Pages\DealerPage.cs" />
+    <Compile Include="Models\Pages\CompanyPage.cs" />
+    <Compile Include="Models\Pages\Page.cs" />
+    <Compile Include="Models\Pages\BranchPage.cs" />
+    <Compile Include="Models\SaucerMultimedia.cs" />
+    <Compile Include="Models\Worker.cs" />
+    <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\Saucer.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Dealer.cs" />
+    <Compile Include="Models\Warning.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Branch.cs" />
+    <Compile Include="Models\Disease.cs" />
+    <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\UserLogin.cs" />
+    <Compile Include="Models\BaseResponses\CreationResponse.cs" />
+    <Compile Include="Models\BaseResponses\Enumerator.cs" />
+    <Compile Include="Models\BaseResponses\ExceptionResponse.cs" />
+    <Compile Include="Models\BaseResponses\FileResponse.cs" />
+    <Compile Include="Models\BaseResponses\UserLoginResponse.cs" />
+    <Compile Include="Models\BaseResponses\SuccessResponse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\RoleService.cs" />
+    <Compile Include="Services\Interfaces\IRoleService.cs" />
+    <Compile Include="Services\Interfaces\IReservationDetailService.cs" />
+    <Compile Include="Services\IngredientGroupService.cs" />
+    <Compile Include="Services\Interfaces\ISaucerConfigurationService.cs" />
+    <Compile Include="Services\Interfaces\ITipService.cs" />
+    <Compile Include="Services\ReservationDetailService.cs" />
+    <Compile Include="Services\SaucerConfigurationService.cs" />
+    <Compile Include="Services\TipService.cs" />
+    <Compile Include="Services\SaucerMultimediaService.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Compile Include="Services\WorkerService.cs" />
+    <Compile Include="Services\WarningService.cs" />
+    <Compile Include="Services\SaucerService.cs" />
+    <Compile Include="Services\ReservationService.cs" />
+    <Compile Include="Services\RegionService.cs" />
+    <Compile Include="Services\MenuService.cs" />
+    <Compile Include="Services\JobService.cs" />
+    <Compile Include="Services\IngredientService.cs" />
+    <Compile Include="Services\DiseaseService.cs" />
+    <Compile Include="Services\DepartmentService.cs" />
+    <Compile Include="Services\DealerService.cs" />
+    <Compile Include="Services\CompanyService.cs" />
+    <Compile Include="Services\BranchService.cs" />
+    <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\Interfaces\IIngredientGroupService.cs" />
+    <Compile Include="Services\Interfaces\ISaucerMultimediaService.cs" />
+    <Compile Include="Services\Interfaces\IWorkerService.cs" />
+    <Compile Include="Services\Interfaces\IWarningService.cs" />
+    <Compile Include="Services\Interfaces\IUserService.cs" />
+    <Compile Include="Services\Interfaces\ISaucerService.cs" />
+    <Compile Include="Services\Interfaces\IReservationService.cs" />
+    <Compile Include="Services\Interfaces\IRegionService.cs" />
+    <Compile Include="Services\Interfaces\IMenuService.cs" />
+    <Compile Include="Services\Interfaces\IJobService.cs" />
+    <Compile Include="Services\Interfaces\IIngredientService.cs" />
+    <Compile Include="Services\Interfaces\IDiseaseService.cs" />
+    <Compile Include="Services\Interfaces\IDepartmentService.cs" />
+    <Compile Include="Services\Interfaces\IDealerService.cs" />
+    <Compile Include="Services\Interfaces\ICompanyService.cs" />
+    <Compile Include="Services\Interfaces\IBranchService.cs" />
+    <Compile Include="Services\Interfaces\IAccountService.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Components\BootstrapEditable\Css\bootstrap-editable.min.css" />
+    <Content Include="Content\Components\BootstrapEditable\img\clear.png" />
+    <Content Include="Content\Components\BootstrapEditable\img\loading.gif" />
+    <Content Include="Content\Components\BootstrapEditable\Scripts\BootstrapEditable.min.js" />
+    <Content Include="Content\Components\BootstrapTouchspin\Css\BootstrapTouchspin.min.css" />
+    <Content Include="Content\Components\BootstrapTable\Css\bootstrap-table.min.css" />
+    <Content Include="Content\Components\BootstrapTable\Scripts\BootstrapTable.min.js" />
+    <Content Include="Content\Components\BootstrapTab\Css\Tab.min.css" />
+    <Content Include="Content\Components\BootstrapTouchspin\Scripts\BootstrapTouchspin.min.js" />
+    <Content Include="Content\Components\Bootstrap\Css\Bootstrap-dialog.min.css" />
+    <Content Include="Content\Components\Bootstrap\Css\Bootstrap-fonts.min.css" />
+    <Content Include="Content\Components\Bootstrap\Css\Bootstrap.min.css" />
+    <Content Include="Content\Components\Bootstrap\Fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Components\Bootstrap\Scripts\Bootstrap-autohidingnavbar.min.js" />
+    <Content Include="Content\Components\Bootstrap\Scripts\Bootstrap-dropdown-hover.min.js" />
+    <Content Include="Content\Components\Bootstrap\Scripts\Bootstrap-dialog.min.js" />
+    <Content Include="Content\Components\Bootstrap\Scripts\Bootstrap-maxlength.min.js" />
+    <Content Include="Content\Components\Bootstrap\Scripts\Bootstrap-number.min.js" />
+    <Content Include="Content\Components\Bootstrap\Scripts\Bootstrap-validator.min.js" />
+    <Content Include="Content\Components\Bootstrap\Scripts\Bootstrap.min.js" />
+    <Content Include="Content\Components\DateRangePicker\Css\daterangepicker.css" />
+    <Content Include="Content\Components\DateRangePicker\Scripts\daterangepicker.js" />
+    <Content Include="Content\Components\DateRangePicker\Scripts\moment.min.js" />
+    <Content Include="Content\Components\Formatter\Scripts\Formatter.min.js" />
+    <Content Include="Content\Components\JQuery\Css\JQuery-ui.css" />
+    <Content Include="Content\Components\JQuery\Scripts\JQuery.min.js" />
+    <Content Include="Content\Components\Messenger\Css\Messenger.min.css" />
+    <Content Include="Content\Components\Messenger\Scripts\Messenger.min.js" />
+    <Content Include="Content\Components\MiniColors\Css\MiniColors.min.css" />
+    <Content Include="Content\Components\MiniColors\Scripts\Minicolors.min.js" />
+    <Content Include="Content\Components\Pace\Css\Pace.min.css" />
+    <Content Include="Content\Components\Pace\Scripts\Pace.min.js" />
+    <Content Include="Content\Components\PopupOverlay\Scripts\PopupOverlay.min.js" />
+    <Content Include="Content\Components\Required-field\Css\Required-field.min.css" />
+    <Content Include="Content\Components\Selectize\Css\Selectize.min.css" />
+    <Content Include="Content\Components\Selectize\Scripts\Selectize.min.js" />
+    <Content Include="Content\Components\SparkLines\Scripts\SparkLines.min.js" />
+    <Content Include="Content\Components\SlimScroll\Scripts\SlimScroll.min.js" />
+    <Content Include="Content\Css\System.css" />
+    <Content Include="Content\Images\Files\PDF.png" />
+    <Content Include="Content\Images\Files\Txt.png" />
+    <Content Include="Content\Images\Files\Unknown.png" />
+    <Content Include="Content\Images\Files\Video.png" />
+    <Content Include="Content\Images\System\Background.gif" />
+    <Content Include="Content\Images\System\bepensa.jpg" />
+    <Content Include="Content\Images\System\Bepensa.png" />
+    <Content Include="Content\Images\System\BienestarBepensa.jpg" />
+    <Content Include="Content\Images\System\BuenComer.jpg" />
+    <Content Include="Content\Images\System\Cup.jpg" />
+    <Content Include="Content\Images\System\GruposAlimenticios.gif" />
+    <Content Include="Content\Images\System\CocaCola.ico" />
+    <Content Include="Content\Images\System\Logo.jpg" />
+    <Content Include="Content\Images\System\NutritionInformation.gif" />
+    <Content Include="Content\Images\Pointers\Blue.png" />
+    <Content Include="Content\Images\Pointers\Green.png" />
+    <Content Include="Content\Images\Pointers\Orange.png" />
+    <Content Include="Content\Images\Pointers\Red.png" />
+    <Content Include="Content\Images\System\_Logo.gif" />
+    <Content Include="Content\Scripts\Branch\Form.js" />
+    <Content Include="Content\Scripts\Branch\Index.js" />
+    <Content Include="Content\Scripts\Company\Form.js" />
+    <Content Include="Content\Scripts\Company\Index.js" />
+    <Content Include="Content\Scripts\Dealer\Form.js" />
+    <Content Include="Content\Scripts\Dealer\Index.js" />
+    <Content Include="Content\Scripts\Department\Form.js" />
+    <Content Include="Content\Scripts\Department\Index.js" />
+    <Content Include="Content\Scripts\Reservation\Report.js" />
+    <Content Include="Content\Scripts\Saucer\Report.js" />
+    <Content Include="Content\Scripts\Selectable.js" />
+    <Content Include="Content\Scripts\Disease\Form.js" />
+    <Content Include="Content\Scripts\Disease\Index.js" />
+    <Content Include="Content\Scripts\General.js" />
+    <Content Include="Content\Scripts\Account\Login.js" />
+    <Content Include="Content\Scripts\Home\Index.js" />
+    <Content Include="Content\Scripts\IngredientGroup\Form.js" />
+    <Content Include="Content\Scripts\IngredientGroup\Index.js" />
+    <Content Include="Content\Scripts\Ingredient\Form.js" />
+    <Content Include="Content\Scripts\Ingredient\Index.js" />
+    <Content Include="Content\Scripts\Report\Worker.js" />
+    <Content Include="Content\Scripts\Report\Reservation.js" />
+    <Content Include="Content\Scripts\Report\Saucer.js" />
+    <Content Include="Content\Scripts\Job\Form.js" />
+    <Content Include="Content\Scripts\Job\Index.js" />
+    <Content Include="Content\Scripts\Menu\Form.js" />
+    <Content Include="Content\Scripts\Menu\Index.js" />
+    <Content Include="Content\Scripts\ModalDetails.js" />
+    <Content Include="Content\Scripts\ModalMultimedia.js" />
+    <Content Include="Content\Scripts\Layout.js" />
+    <Content Include="Content\Scripts\Region\Form.js" />
+    <Content Include="Content\Scripts\Region\Index.js" />
+    <Content Include="Content\Scripts\Reservation\Form.js" />
+    <Content Include="Content\Scripts\Dialog.js" />
+    <Content Include="Content\Scripts\Saucer\Form.js" />
+    <Content Include="Content\Scripts\Saucer\Index.js" />
+    <Content Include="Content\Scripts\Selectize.js" />
+    <Content Include="Content\Scripts\Table.js" />
+    <Content Include="Content\Scripts\Tip\Form.js" />
+    <Content Include="Content\Scripts\Tip\Index.js" />
+    <Content Include="Content\Scripts\User\ChangePassword.js" />
+    <Content Include="Content\Scripts\User\Edit.js" />
+    <Content Include="Content\Scripts\User\New.js" />
+    <Content Include="Content\Scripts\User\Form.js" />
+    <Content Include="Content\Scripts\User\Index.js" />
+    <Content Include="Content\Scripts\Validator.js" />
+    <Content Include="Content\Scripts\Warning\Form.js" />
+    <Content Include="Content\Scripts\Warning\Index.js" />
+    <Content Include="Content\Scripts\Worker\Form.js" />
+    <Content Include="Content\Scripts\Worker\Index.js" />
+    <Content Include="Content\Scripts\Worker\Report.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\LoginTheme.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\MasterTheme.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Components\Bootstrap\Fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Components\Bootstrap\Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Components\Bootstrap\Fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Components\Bootstrap\Fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Components\Bootstrap\Fonts\FontAwesome.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_HeadConfig.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Logout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_MenuTop.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Alerts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Branch\_FormDealers.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Footer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LoginUser.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LoginWorker.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Region\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Region\_Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Region\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Region\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Company\_Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Company\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Company\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Company\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Branch\_Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Branch\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Branch\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Branch\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Department\_Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Department\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Department\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Department\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Job\_Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Job\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Job\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Job\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Disease\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Disease\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Disease\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Disease\_Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Warning\_Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Warning\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Warning\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Warning\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tip\_Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tip\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tip\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tip\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\IngredientGroup\_Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\IngredientGroup\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\IngredientGroup\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\IngredientGroup\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Ingredient\_Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Ingredient\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Ingredient\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Ingredient\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Saucer\_Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Saucer\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Saucer\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Saucer\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Saucer\_FormMultimedia.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dealer\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dealer\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dealer\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dealer\_Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\_Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\_Password.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_ChangePassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Worker\_Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Worker\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Worker\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Worker\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Reservation\_Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Menu\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Menu\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Menu\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Menu\_Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Saucer\_FormSaucerConfigurations.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Reservation\Report.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Saucer\Report.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Worker\Report.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Reservation\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Worker\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\pba.pubxml" />
+    <None Include="Properties\PublishProfiles\Proyects.pubxml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>12491</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:12492/portal</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,16 @@
+﻿@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Helpers
+@{ ViewBag.Title = "Compañías"; }
+
+<div id="@EntityType.Company">
+    <div class="container-fluid">
+        <div class="row">
+            @Html.InputFilterName()    
+            @Html.ButtonFilter()
+            @Html.ButtonExport()
+            @Html.ButtonNew()
+            @Html.ButtonDeleteMany()
+        </div>
+    </div>    
+    @Html.Table()
+</div>

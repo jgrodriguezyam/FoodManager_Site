@@ -1,0 +1,26 @@
+﻿@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Helpers
+@{ ViewBag.Title = "Colaboradores"; }
+
+<div id="@EntityType.Worker">
+    <div class="container-fluid">
+        <div class="row">
+            @Html.InputFilterName()
+            <div class="col-lg-3 input-group container-left selectize-container">
+                <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                @Html.DropDownList("BranchId", new List<SelectListItem>(), new
+                {
+                    id = "BranchId",
+                    @class = "form-control",
+                    data_role = "none",
+                    data_entity = EntityType.Branch
+                })
+            </div>            
+            @Html.ButtonFilter()
+            @Html.ButtonExport()
+            @Html.ButtonNew()
+        </div>
+    </div>    
+    @Html.Table()
+</div>
+

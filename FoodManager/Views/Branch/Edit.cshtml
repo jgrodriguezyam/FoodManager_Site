@@ -1,0 +1,37 @@
+﻿@model FoodManager.Models.Branch
+@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Extensions
+@using FoodManager.Infrastructure.Helpers
+@{
+    ViewBag.Title = "Editar sucursal";
+    ViewBag.ButtonSave = Html.ButtonSave();
+    var attributeDisabled = Model.Status ? "" : "disabled";
+}
+
+@using (Html.BeginForm(ActionType.Update.ToString(), EntityType.Branch.ToString(), FormMethod.Post, new {id = "Form"}))
+{
+    <div class="panel panel-default">
+        <div class="panel-heading"> Información general</div>
+        <div class="panel-body">
+            <div id="BranchContent">
+                @Html.Partial("_Form", Model)
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Asignación de concesionarios
+            <a @attributeDisabled id="btnAddDealer" class='btn btn-primary btn-sm pull-right' style="margin-top: -5px;">
+                <i class="fa fa-plus"></i> Asignar Concesionarios
+            </a>
+        </div>
+        <div class="panel-body">
+            <div id="DealerContennt">
+                <div id="cards-selectable">
+                    @Html.Partial("_FormDealers", Model)
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.ButtonsForm()
+}

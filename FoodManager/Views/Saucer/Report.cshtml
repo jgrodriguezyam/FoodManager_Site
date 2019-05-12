@@ -1,0 +1,76 @@
+﻿@model FoodManager.Models.Reports.SaucerReportResponse
+@using FoodManager.Infrastructure.Enums
+@{
+    ViewBag.Title = "Top 10 Platillos y guarniciones más consumidos";
+    const EntityType entity = EntityType.Report;
+}
+
+<div id="@entity">
+    <div class="tab-content col-md-7" style="margin-left: 10px; margin-right: -10px">
+        <div class="tab-pane fade in active row" id="TableContent">
+            <div class="table-responsive">
+                <table class="table withoutBorder table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 80%;">Principal</th>
+                            <th style="width: 20%;">Consumido</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var main in Model.Main)
+                        {
+                            <tr>
+                                <td>@main.Name </td>
+                                <td>@main.Count veces</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content col-md-5" style="text-align: center;  margin-top: 20px">
+        <div style="height: 50%; display: inline-block;">
+            <span id="MainPie" data-mains="@Json.Encode(Model.Main)">
+                <canvas class="canvas-sparklines"></canvas>
+            </span>
+        </div>
+        <div id="mains" class="col-md-12" style="text-align: center; font-size: 80%; padding-top: 20px"> </div>
+    </div>
+
+    <legend style="padding: 10px 0 "></legend>
+
+    <div class="tab-content col-md-7" style="margin-left: 10px; margin-right: -10px">
+        <div class="tab-pane fade in active row" id="TableContent">
+            <div class="table-responsive">
+                <table class="table withoutBorder table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 80%;">Guarnición</th>
+                            <th style="width: 20%;">Consumido</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var garrison in Model.Garrison)
+                        {
+                            <tr>
+                                <td>@garrison.Name </td>
+                                <td>@garrison.Count veces</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content col-md-5" style="text-align: center; margin-top: 20px">
+        <div style="height: 50%; display: inline-block;">
+            <span id="GarrisonPie" data-garrisons="@Json.Encode(Model.Garrison)">
+                <canvas class="canvas-sparklines"></canvas>
+            </span>
+        </div>
+        <div id="garrisons" class="col-md-12" style="text-align: center; font-size: 80%; padding-top: 20px"> </div>
+    </div>
+</div>

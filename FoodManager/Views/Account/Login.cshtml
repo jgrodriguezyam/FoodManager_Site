@@ -1,0 +1,36 @@
+﻿@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Extensions
+@using FoodManager.Infrastructure.Resolvers
+@using FoodManager.Infrastructure.Settings
+@{
+    Layout = "~/Views/Shared/LoginTheme.cshtml";
+    ViewBag.Title = "Iniciar sesión";
+    var types = new LoginType().ConvertToCollection();
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Iniciar sesión!
+    </div>
+
+    <div class="panel-body" style="background-color: #f5f5f5">
+        <ul class="nav nav-tabs margin-bottom-20">
+            @foreach (var type in types)
+            {
+                var isActive = SessionSettings.RetrieveLoginType.GetValue().IsEqualTo(type.Value) ? "active" : "";
+                <li class="@isActive" ><a href="#@EnumResolver.Login(type.Value)" data-logintype="@type.Value" data-toggle="tab" class="change-login-type">@EnumResolver.Login(type.Value)</a></li>
+            }
+        </ul>
+        <div class="tab-content">
+            @foreach (var type in types)
+            {
+                var classTabPane = SessionSettings.RetrieveLoginType.GetValue().IsEqualTo(type.Value) ? "active in" : "fade";
+                var partial = "_Login" + type.Name;
+                <div class="tab-pane @classTabPane" id="@EnumResolver.Login(type.Value)">
+                    <div>@Html.Partial(partial)</div>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>

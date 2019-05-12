@@ -1,0 +1,14 @@
+﻿@model FoodManager.Models.Saucer
+
+@foreach (var saucerConfiguration in Model.SaucerConfigurations)
+{
+    var ingredient = saucerConfiguration.Ingredient;
+    <div class="SelectableContent selected not-format" data-ingredient="@Json.Encode(saucerConfiguration.Ingredient)" data-name="@ingredient.Name" data-netweight="@saucerConfiguration.NetWeight">
+        <input name="SaucerConfigurations.Index" type="hidden" value="@ingredient.Id" hidden="hidden">
+        <input name="SaucerConfigurations[@ingredient.Id].Id" type="text" value="@saucerConfiguration.Id" hidden="hidden">
+        <input name="SaucerConfigurations[@ingredient.Id].SaucerId" type="text" value="@Model.Id" hidden="hidden">
+        <input name="SaucerConfigurations[@ingredient.Id].NetWeight" type="text" value="@saucerConfiguration.NetWeight" class="inputNetWeight" hidden="hidden">
+        <input name="SaucerConfigurations[@ingredient.Id].IngredientId" type="text" value="@saucerConfiguration.IngredientId" hidden="hidden">
+    </div>
+}
+

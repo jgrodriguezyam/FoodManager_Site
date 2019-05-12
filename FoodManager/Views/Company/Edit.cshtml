@@ -1,0 +1,20 @@
+﻿@model FoodManager.Models.Company
+@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Helpers
+@{
+    ViewBag.Title = "Editar compañía";
+    ViewBag.ButtonSave = Html.ButtonSave();
+}
+
+@using (Html.BeginForm(ActionType.Update.ToString(), EntityType.Company.ToString(), FormMethod.Post, new {id = "Form"}))
+{
+    <div class="panel panel-default">
+        <div class="panel-heading"> Información general</div>
+        <div class="panel-body">
+            <div id="CompanyContent">
+                @Html.Partial("_Form", Model)
+            </div>
+        </div>
+    </div>
+    @Html.ButtonsForm()
+}

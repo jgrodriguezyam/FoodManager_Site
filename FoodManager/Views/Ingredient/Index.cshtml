@@ -1,0 +1,26 @@
+﻿@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Helpers
+@{ ViewBag.Title = "Ingredientes"; }
+
+<div id="@EntityType.Ingredient">
+    <div class="container-fluid">
+        <div class="row">
+            @Html.InputFilterName()
+            <div class="col-lg-3 input-group container-left selectize-container">
+                <span class="input-group-addon"><i class="fa fa-balance-scale"></i></span>
+                @Html.DropDownList("IngredientGroupId", new List<SelectListItem>(), new
+                {
+                    id = "IngredientGroupId",
+                    @class = "form-control",
+                    data_role = "none",
+                    data_entity = EntityType.IngredientGroup
+                })
+            </div>
+            @Html.ButtonFilter()
+            @Html.ButtonExport()
+            @Html.ButtonNew()
+            @Html.ButtonDeleteMany()
+        </div>
+    </div>
+    @Html.Table()
+</div>

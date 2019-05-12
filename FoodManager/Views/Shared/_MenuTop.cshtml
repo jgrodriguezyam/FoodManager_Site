@@ -1,0 +1,126 @@
+﻿@using FoodManager.Infrastructure.Constants
+@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Extensions
+@using FoodManager.Infrastructure.Helpers
+@using FoodManager.Infrastructure.Settings
+@{
+    var sessionDisplay = SessionSettings.RetrieveWorkerId.IsGreaterThanZero() ? SessionSettings.RetrieveFirstName : SessionSettings.RetrieveUserName;
+    var showMenus = !SessionSettings.ExistsWorkerId;
+}
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href='@Url.Action("Index", "Home")' class="navbar-brand">
+                <img width="171" height="43" src="@AppSettings.SystemFolder@SystemConstants.Logo" alt="" />
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                @if (showMenus)
+                {
+                    <li class="dropdown @Html.MenuIsActive(NavigationMenu.Catalog)">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book"></i> Catálogos <b class="caret"></b></a>
+                        <ul class="dropdown-menu right">
+                            <li class="@Html.SubMenuIsActive(ActionType.Index, EntityType.Region)">
+                                <a href='@Url.Action(ActionType.Index.ToString(), EntityType.Region.ToString())'><i class="fa fa-globe"></i> Regiones</a>
+                            </li>
+                            <li class="@Html.SubMenuIsActive(ActionType.Index, EntityType.Company)">
+                                <a href='@Url.Action(ActionType.Index.ToString(), EntityType.Company.ToString())'><i class="fa fa-building"></i> Compañías</a>
+                            </li>
+                            <li class="@Html.SubMenuIsActive(ActionType.Index, EntityType.Branch)">
+                                <a href='@Url.Action(ActionType.Index.ToString(), EntityType.Branch.ToString())'><i class="fa fa-map-signs"></i> Sucursales</a>
+                            </li>
+                            <li class="@Html.SubMenuIsActive(ActionType.Index, EntityType.Department)">
+                                <a href='@Url.Action(ActionType.Index.ToString(), EntityType.Department.ToString())'><i class="fa fa-sitemap"></i> Departamentos</a>
+                            </li>
+                            <li class="@Html.SubMenuIsActive(ActionType.Index, EntityType.Job)">
+                                <a href='@Url.Action(ActionType.Index.ToString(), EntityType.Job.ToString())'><i class="fa fa-briefcase"></i> Puestos</a>
+                            </li>
+                            <li class="@Html.SubMenuIsActive(ActionType.Index, EntityType.Disease)">
+                                <a href='@Url.Action(ActionType.Index.ToString(), EntityType.Disease.ToString())'><i class="fa fa-heartbeat"></i> Enfermedades</a>
+                            </li>
+                            <li class="@Html.SubMenuIsActive(ActionType.Index, EntityType.Dealer)">
+                                <a href='@Url.Action(ActionType.Index.ToString(), EntityType.Dealer.ToString())'><i class="fa fa-spoon"></i> Concesionarios</a>
+                            </li>
+                            <li class="@Html.SubMenuIsActive(ActionType.Index, EntityType.User)">
+                                <a href='@Url.Action(ActionType.Index.ToString(), EntityType.User.ToString())'><i class="fa fa-user"></i> Usuarios</a>
+                            </li>
+                            <li class="@Html.SubMenuIsActive(ActionType.Index, EntityType.Worker)">
+                                <a href='@Url.Action(ActionType.Index.ToString(), EntityType.Worker.ToString())'><i class="fa fa-credit-card"></i> Colaboradores</a>
+                            </li>
+                        </ul>
+                    </li>
+                }
+                @if (showMenus)
+                {
+                    <li class="dropdown @Html.MenuIsActive(NavigationMenu.Alimentation)">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-coffee"></i> Alimentación <b class="caret"></b></a>
+                        <ul class="dropdown-menu right">
+                            <li class="@Html.SubMenuIsActive(ActionType.Index, EntityType.Tip)">
+                                <a href='@Url.Action(ActionType.Index.ToString(), EntityType.Tip.ToString())'><i class="fa fa-commenting"></i> Consejos Alimenticios</a>
+                            </li>
+                            <li class="@Html.SubMenuIsActive(ActionType.Index, EntityType.Warning)">
+                                <a href='@Url.Action(ActionType.Index.ToString(), EntityType.Warning.ToString())'><i class="fa fa-user-md"></i> Advertencias Médicas</a>
+                            </li>
+                            <li class="@Html.SubMenuIsActive(ActionType.Index, EntityType.IngredientGroup)">
+                                <a href='@Url.Action(ActionType.Index.ToString(), EntityType.IngredientGroup.ToString())'><i class="fa fa-balance-scale"></i> Grupo Ingredientes</a>
+                            </li>
+                            <li class="@Html.SubMenuIsActive(ActionType.Index, EntityType.Ingredient)">
+                                <a href='@Url.Action(ActionType.Index.ToString(), EntityType.Ingredient.ToString())'><i class="fa fa-leaf"></i> Ingredientes</a>
+                            </li>
+                            <li class="@Html.SubMenuIsActive(ActionType.Index, EntityType.Saucer)">
+                                <a href='@Url.Action(ActionType.Index.ToString(), EntityType.Saucer.ToString())'><i class="fa fa-user fa-cutlery"></i> Platillos</a>
+                            </li>
+                            <li class="@Html.SubMenuIsActive(ActionType.Index, EntityType.Menu)">
+                                <a href='@Url.Action(ActionType.Index.ToString(), EntityType.Menu.ToString())'><i class="fa fa-map"></i> Menú diario</a>
+                            </li>
+                        </ul>
+                    </li>
+                }
+                <li class="dropdown @Html.MenuIsActive(NavigationMenu.Report)">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bar-chart"></i> Reportes <b class="caret"></b></a>
+                    <ul class="dropdown-menu right">
+                        @if (showMenus)
+                        {
+                            <li class="@Html.SubMenuIsActive(ActionType.Report, EntityType.Saucer)">
+                                <a href='@Url.Action(ActionType.Report.ToString(), EntityType.Saucer.ToString())'><i class="fa fa-area-chart"></i> Platillos</a>
+                            </li>
+                            <li class="@Html.SubMenuIsActive(ActionType.Report, EntityType.Worker)">
+                                <a href='@Url.Action(ActionType.Report.ToString(), EntityType.Worker.ToString())'><i class="fa fa-bar-chart"></i> Colaboradores</a>
+                            </li>
+                        }
+                        <li class="@Html.SubMenuIsActive(ActionType.Report, EntityType.Reservation)">
+                            <a href='@Url.Action(ActionType.Report.ToString(), EntityType.Reservation.ToString())'><i class="fa fa-bar-chart"></i> Selección del menú</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown @Html.MenuIsActive(NavigationMenu.Reservation)">
+                    <a href='@Url.Action(ActionType.Index.ToString(), EntityType.Reservation.ToString())'><i class="fa fa-cutlery "></i> Selección del menú</a>
+                </li>
+                <li class="dropdown @Html.MenuIsActive(NavigationMenu.Account)">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user fa-fw"></i> @sessionDisplay <b class="caret"></b></a>
+                    <ul class="dropdown-menu right">
+                        @if (showMenus)
+                        {
+                            <li class="@Html.SubMenuIsActive(ActionType.ChangePassword, EntityType.Account)">
+                                <a href='@Url.Action(ActionType.ChangePassword.ToString(), EntityType.Account.ToString())'><i class="fa fa-lock"></i> Cambiar contraseña</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                        }
+                        <li>
+                            <a href="#logout"><i class="fa fa-sign-out"></i> Cerrar Sesion</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</nav>

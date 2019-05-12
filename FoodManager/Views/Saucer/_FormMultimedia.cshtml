@@ -1,0 +1,20 @@
+﻿@model FoodManager.Models.Saucer
+@{
+    var index = 0;
+    var classDisableActions = Model.Status ? "" : "disable-actions";
+}
+
+<div id="cards-multimedia" class="@classDisableActions">
+    @foreach (var saucerMultimedia in Model.SaucerMultimedias)
+    {
+        var fieldName = "SaucerMultimedias[" + index + "]";
+        <div class="multimedia-preview" data-path="@saucerMultimedia.Path" data-source="@saucerMultimedia.Source" data-type="@saucerMultimedia.Type">
+            @Html.Hidden("SaucerMultimedias.Index", index)
+            @Html.Hidden(fieldName + ".Id", saucerMultimedia.Id)
+            @Html.Hidden(fieldName + ".Path", saucerMultimedia.Path)
+            @Html.Hidden(fieldName + ".Source", saucerMultimedia.Source)
+            @Html.Hidden(fieldName + ".Type", saucerMultimedia.Type)
+        </div>
+        index++;
+    }
+</div>

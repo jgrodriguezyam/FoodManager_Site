@@ -1,0 +1,48 @@
+﻿@using System.Web.Mvc.Html
+@using FoodManager.Infrastructure.Constants
+@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Extensions
+@using FoodManager.Infrastructure.Resolvers
+@using FoodManager.Infrastructure.Settings
+@{
+    var currentAction = Html.ViewContext.RouteData.GetRequiredString("action");
+    var action = currentAction.IsEquals(ActionType.Create.ToString()) ? ActionType.New.ToString() : currentAction;
+    var controller = Html.ViewContext.RouteData.GetRequiredString("controller");
+}
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>@SystemConstants.AppName | @ViewBag.Title</title>
+        @{Html.RenderPartial("_HeadConfig");}
+        @Styles.Render(String.Format(SystemConstants.RootBundleStyles, "Shared", "Master"))
+        @Styles.Render(String.Format(SystemConstants.RootBundleStyles, controller, action))
+    </head>
+
+    <body>
+        @Html.Partial("_Logout")
+
+        <div id="wrapper" data-root="@RootResolver.Resolver" data-allowedfileextensions="@AppSettings.AllowedFileExtensions" data-maxrequestlength="@AppSettings.MaxRequestLength" data-withoutmultimedia="@AppSettings.FilesFolder@SystemConstants.WithoutMultimedia">
+            <div id="header">
+                @{Html.RenderPartial("_MenuTop");}
+            </div>
+
+            <div id="content" class="container page-content">
+                <h1 class="page-header" style="margin-top: 20px;">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-6 container-left"> @ViewBag.Title <small>@ViewBag.Subtitle</small> </div>
+                            @ViewBag.ButtonSave
+                        </div>
+                    </div>
+                </h1>
+                @RenderPage("_Alerts.cshtml")
+                @RenderBody()
+            </div>
+            @{Html.RenderPartial("_Footer");}
+        </div>
+        @Scripts.Render(String.Format(SystemConstants.RootBundleScripts, "Shared", "Master"))
+        @Scripts.Render(String.Format(SystemConstants.RootBundleScripts, controller, action))
+    </body>
+
+</html>

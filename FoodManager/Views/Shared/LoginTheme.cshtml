@@ -1,0 +1,36 @@
+﻿@using FoodManager.Infrastructure.Constants
+@using FoodManager.Infrastructure.Resolvers
+@using FoodManager.Infrastructure.Settings
+@{
+    var action = Html.ViewContext.RouteData.GetRequiredString("action");
+    var controller = Html.ViewContext.RouteData.GetRequiredString("controller");
+}
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>@SystemConstants.AppName - @ViewBag.Title</title>
+        @{Html.RenderPartial("_HeadConfig");}             
+        @Styles.Render(String.Format(SystemConstants.RootBundleStyles, "Shared", "Login"))
+        @Styles.Render(String.Format(SystemConstants.RootBundleStyles, controller, action))
+    </head>
+
+    <body class="login">
+        <div id="wrapper" data-root="@RootResolver.Resolver">
+            <div class="container">
+                <div class="col-md-4 col-md-offset-4 text-center">
+                    <img id="Logotipo" src="@AppSettings.SystemFolder@SystemConstants.Logo" alt="..." />
+                </div>
+
+                <div class="col-md-4 col-md-offset-4">
+                    @RenderPage("_Alerts.cshtml")
+                    @RenderBody()
+                </div>
+            </div>
+            @{Html.RenderPartial("_Footer");}
+        </div>        
+        @Scripts.Render(String.Format(SystemConstants.RootBundleScripts, "Shared", "Login"))
+        @Scripts.Render(String.Format(SystemConstants.RootBundleScripts, controller, action))
+    </body>
+
+</html>

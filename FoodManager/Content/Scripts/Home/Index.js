@@ -1,0 +1,3 @@
+//INSTANCES
+clock();
+clearOpacity();

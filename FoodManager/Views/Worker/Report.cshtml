@@ -1,0 +1,72 @@
+﻿@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Helpers
+@{ ViewBag.Title = "Reporte de ingesta calórica por Colaborador"; }
+
+
+<div id="@EntityType.Worker">
+    <input type="hidden" name="IsReport" id="IsReport" value="true" />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 input-group container-left selectize-container">
+                <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                @Html.DropDownList("CompanyId", new List<SelectListItem>(), new
+           {
+               id = "CompanyId",
+               @class = "form-control",
+               data_role = "none",
+               data_entity = EntityType.Company
+           })
+            </div>
+
+            <div class="col-lg-3 input-group container-left selectize-container">
+                <span class="input-group-addon"><i class="fa fa-map-signs"></i></span>
+                @Html.DropDownList("BranchId", new List<SelectListItem>(), new
+                {
+                    id = "BranchId",
+                    @class = "form-control",
+                    data_role = "none",
+                    data_entity = EntityType.Branch
+                })
+            </div>
+            <div class="col-lg-3 input-group container-left selectize-container">
+                <span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
+                @Html.DropDownList("DepartmentId", new List<SelectListItem>(), new
+                {
+                    id = "DepartmentId",
+                    @class = "form-control",
+                    data_role = "none",
+                    data_entity = EntityType.Department
+                })
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px">
+            <div class="col-lg-3 input-group container-left selectize-container">
+                <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
+                @Html.DropDownList("JobId", new List<SelectListItem>(), new
+           {
+               id = "JobId",
+               @class = "form-control",
+               data_role = "none",
+               data_entity = EntityType.Job
+           })
+            </div>
+
+            <div class="col-lg-3 input-group container-left selectize-container">
+                <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
+                @Html.DropDownList("Month", new List<SelectListItem>(), new
+                {
+                    id = "Month",
+                    @class = "form-control",
+                    data_role = "none",
+                    data_entity = EntityType.System,
+                    data_action = ActionType.Months
+                })
+            </div>
+            @Html.ButtonFilter()
+            @Html.ButtonExport()
+        </div>
+    </div>
+    @Html.Table()
+</div>
+

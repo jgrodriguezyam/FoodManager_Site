@@ -1,0 +1,50 @@
+﻿@model FoodManager.Models.Saucer
+@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Helpers
+@{
+    ViewBag.Title = "Nuevo platillo";
+    ViewBag.ButtonSave = Html.ButtonSave();
+}
+
+@using (Html.BeginForm(ActionType.Create.ToString(), EntityType.Saucer.ToString(), FormMethod.Post, new { enctype = "multipart/form-data", id = "Form" }))
+{
+    <div class="panel panel-default">
+        <div class="panel-heading"> Información general</div>
+        <div class="panel-body">
+            <div id="SaucerContent">
+                @Html.Partial("_Form", Model)
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Ingredientes
+            <a id="btnAddIngredient" class='btn btn-primary btn-sm pull-right' style="margin-top: -5px;">
+                <i class="fa fa-plus"></i> Asignación de Ingredientes
+            </a>
+        </div>
+        <div class="panel-body">
+            <div id="IngredientContent">
+                <div id="cards-selectable">
+                    @Html.Partial("_FormSaucerConfigurations", Model)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Asignación de Multimedia
+            <a id="btnAddMultimedia" class='btn btn-primary btn-sm pull-right' style="margin-top: -5px;">
+                <i class="fa fa-plus"></i> Agregar Multimedia
+            </a>
+        </div>
+        <div class="panel-body">
+            <div id="MultimediaContent">
+                @Html.Partial("_FormMultimedia", Model)
+            </div>
+        </div>
+    </div>
+    @Html.ButtonsForm()
+}

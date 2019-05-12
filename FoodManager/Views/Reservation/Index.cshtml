@@ -1,0 +1,15 @@
+﻿@using FoodManager.Infrastructure.Constants
+@using FoodManager.Infrastructure.Enums
+@using FoodManager.Infrastructure.Helpers
+@using FoodManager.Infrastructure.Settings
+@{
+    ViewBag.Title = "Selección del menú";
+    ViewBag.ButtonSave = Html.ButtonSave();
+}
+
+@using (Html.BeginForm(ActionType.Save.ToString(), EntityType.Reservation.ToString(), FormMethod.Post, new {enctype = "multipart/form-data", id = "Form"}))
+{
+    <div id="@EntityType.Reservation" data-withoutsaucer="@AppSettings.SystemFolder@SystemConstants.WithoutSaucer">
+        @Html.Partial("_Form")
+    </div>
+}
